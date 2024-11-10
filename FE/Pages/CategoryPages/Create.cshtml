@@ -1,0 +1,134 @@
+@page
+@model CreateModel
+<style>
+    /* General Page Styling */
+    body {
+        background-color: #f9f9f9;
+        font-family: Arial, sans-serif;
+    }
+
+    h1 {
+        color: #2c3e50;
+        font-size: 2.5rem;
+        font-weight: bold;
+        margin-top: 1rem;
+        text-align: center;
+    }
+
+    h4 {
+        color: #34495e;
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+
+    hr {
+        border-top: 2px solid #bdc3c7;
+        width: 50%;
+        margin: 0 auto;
+    }
+
+    /* Form Container */
+    .col-md-4 {
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin: 2rem auto;
+    }
+
+    /* Form Group Styling */
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .control-label {
+        color: #2c3e50;
+        font-weight: bold;
+    }
+
+    .form-control {
+        border: 1px solid #bdc3c7;
+        border-radius: 4px;
+        padding: 10px;
+        font-size: 1rem;
+        color: #2c3e50;
+    }
+
+    .form-control:focus {
+        border-color: #3498db;
+        box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+    }
+
+    /* Validation Message Styling */
+    .text-danger {
+        color: #e74c3c;
+        font-size: 0.9rem;
+    }
+
+    /* Submit Button */
+    .btn-primary {
+        background-color: #3498db;
+        border: none;
+        padding: 10px 20px;
+        font-size: 1rem;
+        font-weight: bold;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-primary:hover {
+        background-color: #2980b9;
+    }
+
+    /* Back to List Link */
+    a[asp-page="Index"] {
+        color: #3498db;
+        font-weight: bold;
+        margin-top: 1rem;
+        display: inline-block;
+        text-decoration: none;
+    }
+
+    a[asp-page="Index"]:hover {
+        color: #2980b9;
+        text-decoration: underline;
+    }
+</style>
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Category</h4>
+<hr/>
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Category.CategoryName" class="control-label"></label>
+                <input asp-for="Category.CategoryName" class="form-control"/>
+                <span asp-validation-for="Category.CategoryName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Category.CategoryDescription" class="control-label"></label>
+                <input asp-for="Category.CategoryDescription" class="form-control"/>
+                <span asp-validation-for="Category.CategoryDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Category.FromCountry" class="control-label"></label>
+                <input asp-for="Category.FromCountry" class="form-control"/>
+                <span asp-validation-for="Category.FromCountry" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>

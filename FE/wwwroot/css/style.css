@@ -1,0 +1,161 @@
+﻿/* General Page Styling */
+body {
+    background-color: #f9f9f9;
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    color: #2c3e50;
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-top: 1rem;
+    text-align: center;
+}
+
+h3 {
+    color: #333333;
+    text-align: center;
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+}
+
+h4 {
+    color: #34495e;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+hr {
+    border-top: 2px solid #bdc3c7;
+    width: 50%;
+    margin: 1rem auto;
+}
+
+/* Form and Table Container Styling */
+.container {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 2rem auto;
+    max-width: 600px;
+}
+
+/* Form Group Styling */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.control-label {
+    color: #2c3e50;
+    font-weight: bold;
+}
+
+.form-control {
+    border: 1px solid #bdc3c7;
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 1rem;
+    color: #2c3e50;
+}
+
+.form-control:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+}
+
+/* Validation Message Styling */
+.text-danger {
+    color: #e74c3c;
+    font-size: 0.9rem;
+}
+
+/* Button Styling */
+.btn-primary {
+    background-color: #3498db;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #2980b9;
+}
+
+.btn-danger {
+    background-color: #e74c3c;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #ffffff;
+    font-weight: bold;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-danger:hover {
+    background-color: #c0392b;
+}
+
+/* Link Styling */
+a[asp-page="Index"], a[asp-page="Create"] {
+    color: #3498db;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+a[asp-page="Index"]:hover, a[asp-page="Create"]:hover {
+    color: #2980b9;
+    text-decoration: underline;
+}
+
+/* Table Styling */
+.table {
+    width: 100%;
+    margin-top: 1rem;
+    background-color: #ffffff;
+    border-collapse: collapse;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.table th,
+.table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #bdc3c7;
+}
+
+.table th {
+    background-color: #34495e;
+    color: #ffffff;
+}
+
+.table tr:hover {
+    background-color: #f2f2f2;
+}
+
+/* Paging Controls Styling */
+.paging-controls {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination .page-item .page-link {
+    color: #3498db;
+    font-weight: bold;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #3498db;
+    color: #ffffff;
+}
+
+.pagination .page-item.disabled .page-link {
+    color: #bdc3c7;
+}

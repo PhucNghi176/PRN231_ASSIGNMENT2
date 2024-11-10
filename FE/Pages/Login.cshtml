@@ -1,0 +1,45 @@
+﻿@page "/"
+@model LoginModel
+@{
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-4"></div>
+        <form method="post" class="col-4">
+            <h1 class="text-center">Sign in</h1>
+            <!-- Email input -->
+            <div class="form-outline mb-4">
+                <label class="form-label" for="Email">Email address</label>
+                <input type="text" id="Email" name="Email" class="form-control"/>
+            </div>
+
+            <!-- Password input -->
+            <div class="form-outline mb-4">
+                <label class="form-label" for="Password">Password</label>
+                <input type="password" id="Password" name="Password" class="form-control"/>
+            </div>
+
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-block mb-4 d-flex w-100" style="background-color: black; color: white;">Sign in</button>
+        </form>
+        <div class="col-4"></div>
+    </div>
+</div>
+
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <div class="alert alert-danger">@Model.ErrorMessage</div>
+}
+
+@section Scripts {
+    <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const token = '@Model.Token';
+        if (token) {
+            localStorage.setItem('token', token);
+            window.location.href = '/';
+        }
+    });
+</script>
+}

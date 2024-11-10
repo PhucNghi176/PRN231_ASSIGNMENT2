@@ -1,0 +1,189 @@
+﻿@page
+@model IndexModel
+<style>/* General Styling */
+    body {
+        background-color: #f9f9f9;
+        font-family: Arial, sans-serif;
+    }
+
+    h1 {
+        color: #2c3e50;
+        font-size: 2.5rem;
+        font-weight: bold;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    a {
+        color: #3498db;
+        text-decoration: none;
+    }
+
+    a:hover {
+        color: #2980b9;
+        text-decoration: underline;
+    }
+
+    /* Table Styling */
+    .table {
+        background-color: #ffffff;
+        box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .table th {
+        background-color: #2c3e50;
+        color: #ffffff;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .table td {
+        text-align: center;
+        padding: 15px;
+    }
+
+    .table tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    /* Pagination Styling */
+    .fixed-pagination {
+        
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 5;
+        bottom: 50px;
+        position: fixed;
+        left: 0;
+        right:0;
+        
+    }
+
+    .pagination {
+        margin: 0;
+    }
+
+    .page-item.active .page-link {
+        background-color: #3498db;
+        border-color: #3498db;
+        color: #ffffff;
+    }
+
+    .page-item .page-link {
+        color: #2c3e50;
+        border: 1px solid #dddddd;
+        padding: 8px 12px;
+        margin: 0 3px;
+    }
+
+    .page-item.disabled .page-link {
+        color: #bbbbbb;
+        pointer-events: none;
+        background-color: #f9f9f9;
+    }
+
+    /* Button Styling */
+    a[asp-page="Create"] {
+        display: inline-block;
+        background-color: #2ecc71;
+        color: #ffffff;
+        padding: 10px 15px;
+        border-radius: 5px;
+        font-weight: bold;
+    }
+
+    a[asp-page="Create"]:hover {
+        background-color: #27ae60;
+    }
+
+    /* Action Links */
+    td a {
+        color: #3498db;
+        font-weight: bold;
+    }
+
+    td a:hover {
+        color: #2980b9;
+    }
+</style>
+@{
+    ViewData["Title"] = "Silver Jewelry";
+}
+
+<h1 style="text-align: center">Silver Jewelry</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+
+@if(TempData["Message"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["Message"]
+    </div>
+}
+<nav class="navbar navbar-light bg-light">
+    <form class="form-inline" method="get">
+        <div class="input-group">
+            <input class="form-control" type="search" placeholder="Search by name or description"
+                   aria-label="Search" asp-for="Query">
+            <div class="input-group-append">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </div>
+        </div>
+    </form>
+</nav>
+<table class="table">
+    <!-- Table headers remain unchanged -->
+    <thead>
+    <tr>
+        <th>Silver Jewelry Name</th>
+        <th>Description</th>
+        <th>Metal Weight</th>
+        <th>Price</th>
+        <th>Production Year</th>
+        <th>Category</th>
+        <th>Category Name</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.SilverJewelry)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.SilverJewelryName)</td>
+            <td>@Html.DisplayFor(modelItem => item.SilverJewelryDescription)</td>
+            <td>@Html.DisplayFor(modelItem => item.MetalWeight)</td>
+            <td>@Html.DisplayFor(modelItem => item.Price)</td>
+            <td>@Html.DisplayFor(modelItem => item.ProductionYear)</td>
+            <td>@Html.DisplayFor(modelItem => item.Category.CategoryId)</td>
+            <td>@Html.DisplayFor(modelItem => item.Category.CategoryName)</td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.SilverJewelryId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.SilverJewelryId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.SilverJewelryId">Delete</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+<nav class="paging-controls fixed-pagination">
+    <ul class="pagination">
+        <li class="page-item @(Model.CurrentPage == 1 ? "disabled" : "")">
+            <a class="page-link" asp-page="./Index" asp-route-pageNumber="@(Model.CurrentPage - 1)" asp-route-query="@Model.Query">Previous</a>
+        </li>
+        @for (var i = 1; i <= Model.TotalPages; i++)
+        {
+            <li class="page-item @(Model.CurrentPage == i ? "active" : "")">
+                <a class="page-link" asp-page="./Index" asp-route-pageNumber="@i" asp-route-query="@Model.Query">@i</a>
+            </li>
+        }
+        <li class="page-item @(Model.CurrentPage == Model.TotalPages ? "disabled" : "")">
+            <a class="page-link" asp-page="./Index" asp-route-pageNumber="@(Model.CurrentPage + 1)" asp-route-query="@Model.Query">Next</a>
+        </li>
+    </ul>
+</nav>

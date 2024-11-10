@@ -1,0 +1,141 @@
+﻿@page
+@model DetailsModel
+<style>
+    /* General Page Styling */
+    body {
+        background-color: #f9f9f9;
+        font-family: Arial, sans-serif;
+    }
+
+    h1 {
+        color: #c0392b;
+        font-size: 2.5rem;
+        font-weight: bold;
+        text-align: center;
+        margin-top: 1rem;
+    }
+
+    h3 {
+        color: #333333;
+        text-align: center;
+        font-size: 1.2rem;
+        margin-bottom: 1.5rem;
+    }
+
+    h4 {
+        color: #34495e;
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    hr {
+        border-top: 2px solid #bdc3c7;
+        width: 50%;
+        margin: 1rem auto;
+    }
+
+    /* Details Section Styling */
+    .row {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #ffffff;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 2rem auto;
+        max-width: 600px;
+        box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    dt {
+        font-weight: bold;
+        color: #2c3e50;
+        font-size: 1rem;
+    }
+
+    dd {
+        margin-bottom: 1rem;
+        font-size: 1rem;
+        color: #555555;
+    }
+
+    /* Form Styling */
+    form {
+        text-align: center;
+        margin-top: 1.5rem;
+    }
+
+    .btn-danger {
+        background-color: #e74c3c;
+        border: none;
+        padding: 10px 20px;
+        font-size: 1rem;
+        color: #ffffff;
+        font-weight: bold;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-danger:hover {
+        background-color: #c0392b;
+    }
+
+    /* Back to List Link */
+    a[asp-page="Index"] {
+        color: #3498db;
+        font-weight: bold;
+        margin-left: 15px;
+        text-decoration: none;
+    }
+
+    a[asp-page="Index"]:hover {
+        color: #2980b9;
+        text-decoration: underline;
+    }
+</style>
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>SilverJewelry</h4>
+    <hr/>
+    <dl class="row">
+        <dt>Silver Jewelry Name</dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.SilverJewelry.SilverJewelryName)
+        </dd>
+        <dt>Description</dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.SilverJewelry.SilverJewelryDescription)
+        </dd>
+        <dt>Metal Weight</dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.SilverJewelry.MetalWeight)
+        </dd>
+        <dt>Price</dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.SilverJewelry.Price)
+        </dd>
+        <dt>Production Year</dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.SilverJewelry.ProductionYear)
+        </dd>
+        <dt>Category </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.SilverJewelry.Category.CategoryId)
+        </dd>
+        <dt>Category Name</dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.SilverJewelry.Category.CategoryName)
+        </dd>
+
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.SilverJewelry.SilverJewelryId">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

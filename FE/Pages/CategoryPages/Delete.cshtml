@@ -1,0 +1,132 @@
+@page
+@model DeleteModel
+<style>
+    /* General Page Styling */
+    body {
+        background-color: #f9f9f9;
+        font-family: Arial, sans-serif;
+    }
+
+    h1 {
+        color: #c0392b;
+        font-size: 2.5rem;
+        font-weight: bold;
+        text-align: center;
+        margin-top: 1rem;
+    }
+
+    h3 {
+        color: #333333;
+        text-align: center;
+        font-size: 1.2rem;
+        margin-bottom: 1.5rem;
+    }
+
+    h4 {
+        color: #34495e;
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    hr {
+        border-top: 2px solid #bdc3c7;
+        width: 50%;
+        margin: 1rem auto;
+    }
+
+    /* Details Section Styling */
+    .row {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #ffffff;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 2rem auto;
+        max-width: 600px;
+        box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    dt {
+        font-weight: bold;
+        color: #2c3e50;
+        font-size: 1rem;
+    }
+
+    dd {
+        margin-bottom: 1rem;
+        font-size: 1rem;
+        color: #555555;
+    }
+
+    /* Form Styling */
+    form {
+        text-align: center;
+        margin-top: 1.5rem;
+    }
+
+    .btn-danger {
+        background-color: #e74c3c;
+        border: none;
+        padding: 10px 20px;
+        font-size: 1rem;
+        color: #ffffff;
+        font-weight: bold;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-danger:hover {
+        background-color: #c0392b;
+    }
+
+    /* Back to List Link */
+    a[asp-page="Index"] {
+        color: #3498db;
+        font-weight: bold;
+        margin-left: 15px;
+        text-decoration: none;
+    }
+
+    a[asp-page="Index"]:hover {
+        color: #2980b9;
+        text-decoration: underline;
+    }
+</style>
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Category</h4>
+    <hr/>
+    <dl class="row" style="text-align: center">
+        <dt class="col-sm-2">
+            Category Name
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Category.CategoryName)
+        </dd>
+        <dt class="col-sm-2">
+            Category Description
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Category.CategoryDescription)
+        </dd>
+        <dt class="col-sm-2">
+            From Country
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Category.FromCountry)
+        </dd>
+    </dl>
+
+    <form method="post">
+        <input type="hidden" asp-for="Category.CategoryId"/>
+        <input type="submit" value="Delete" class="btn btn-danger"/> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>

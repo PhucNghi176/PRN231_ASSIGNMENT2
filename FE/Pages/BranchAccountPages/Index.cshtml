@@ -1,0 +1,166 @@
+@page
+@model IndexModel
+<style>/* General Styling */
+    body {
+        background-color: #f9f9f9;
+        font-family: Arial, sans-serif;
+    }
+
+    h1 {
+        color: #2c3e50;
+        font-size: 2.5rem;
+        font-weight: bold;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    a {
+        color: #3498db;
+        text-decoration: none;
+    }
+
+    a:hover {
+        color: #2980b9;
+        text-decoration: underline;
+    }
+
+    /* Table Styling */
+    .table {
+        background-color: #ffffff;
+        box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .table th {
+        background-color: #2c3e50;
+        color: #ffffff;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .table td {
+        text-align: center;
+        padding: 15px;
+    }
+
+    .table tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    /* Pagination Styling */
+    .fixed-pagination {
+
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 5;
+        bottom: 50px;
+        position: fixed;
+        left: 0;
+        right:0;
+
+    }
+
+    .pagination {
+        margin: 0;
+    }
+
+    .page-item.active .page-link {
+        background-color: #3498db;
+        border-color: #3498db;
+        color: #ffffff;
+    }
+
+    .page-item .page-link {
+        color: #2c3e50;
+        border: 1px solid #dddddd;
+        padding: 8px 12px;
+        margin: 0 3px;
+    }
+
+    .page-item.disabled .page-link {
+        color: #bbbbbb;
+        pointer-events: none;
+        background-color: #f9f9f9;
+    }
+
+    /* Button Styling */
+    a[asp-page="Create"] {
+        display: inline-block;
+        background-color: #2ecc71;
+        color: #ffffff;
+        padding: 10px 15px;
+        border-radius: 5px;
+        font-weight: bold;
+    }
+
+    a[asp-page="Create"]:hover {
+        background-color: #27ae60;
+    }
+
+    /* Action Links */
+    td a {
+        color: #3498db;
+        font-weight: bold;
+    }
+
+    td a:hover {
+        color: #2980b9;
+    }
+</style>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            FullName
+        </th>
+        <th>
+            Email Address
+        </th>
+        <th>
+            Role
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.BranchAccount)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmailAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Role)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.AccountId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.AccountId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.AccountId">Delete</a> |
+                @if (item.Role != 0)
+                {
+                    <a asp-page="./Ban" asp-route-id="@item.AccountId">Ban</a>
+                }
+                else
+                {
+                    <a asp-page="./Unban" asp-route-id="@item.AccountId">Un-Ban</a>
+                }
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
